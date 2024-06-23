@@ -1,0 +1,147 @@
+body {
+  padding-bottom: 40px;
+  background-color: #FFFAF0;
+}
+
+
+
+/*New website*/
+.container {
+  width: auto;
+  max-width: 1000px;
+  padding: 0 8%;
+}
+
+.footer {
+  background-color: #f5f5f5;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+p {
+  text-align: justify !important;
+}
+
+.authors {
+  margin: 25px auto;
+  font-size: 1.2rem;
+}
+.affil {
+  margin: 10px auto;
+  font-size: 0.9rem;
+  font-style:italic;
+}
+.authornote {
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+.author-block {
+  margin: 0 3px 0 3px;
+}
+.white-box {
+  padding: 40px 8%;
+  background-color: white;
+}
+.yellow-box {
+  padding: 40px;
+  background-color: #FDF5E6;
+}
+.caption {
+  margin-top: 20px;
+}
+
+.title {
+  margin: 40px 0 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 1.25em 1.5em;
+}
+
+/* Table */
+.group-divider {
+  border-top: 3px solid currentcolor;
+  border-bottom: 3px solid currentcolor;
+}
+
+/*.table-group-divider {
+  border-bottom: 2px solid currentcolor;
+}
+*/
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+#carouselFirst .carousel-item {
+  height: 42rem;
+}
+
+#carouselSecond .carousel-item {
+  height: 42rem;
+}
+
+#carouselThird .carousel-item {
+  height: 30rem;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 10%;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+/* rtl:begin:ignore */
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+/* rtl:end:ignore */
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+/* rtl:begin:remove */
+.featurette-heading {
+  letter-spacing: -.05rem;
+}
+
+/* rtl:end:remove */
+

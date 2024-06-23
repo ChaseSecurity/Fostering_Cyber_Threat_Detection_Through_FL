@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>FL for threat detection</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" href="./assets/css/ie10-viewport-bug-workaround.css">
+</head>
+<body class="d-flex flex-column h-100">
+    
+<!-- Begin content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container" align="center">
+    <!-- Paper title -->
+    <h1 class="mt-5">Enabling Privacy-Preserving Cyber Threat Detection with Federated Learning</h1>
+    <!-- Paper authors -->
+    <div class="authors" >
+      <span class="author-block">
+        Yu Bi<sup>1</sup>,
+      </span>
+      <span class="author-block">
+        Yekai Li<sup>1</sup>,
+      </span>
+      <span class="author-block">
+        Xuan Feng<sup>2</sup>,
+      </span>
+      <span class="author-block">
+        <a href="https://xianghang.me/zh/" >Xianghang Mi</a><sup>*,1</sup>
+      </span>
+    </div>
+    <div class="affil" align="center">
+      <span class="author-block">
+        <sup>1</sup>University of Science and Technology of China,
+      </span>
+      <span class="author-block">
+        <sup>2</sup>Microsoft Research Asia
+      </span>
+    </div>
+    <div class="authornote" align="center">
+      <span class="author-block">
+        *Corresponding author.
+      </span>
+    </div>
+
+    <!-- PDF link -->
+    <a type="button" class="btn btn-warning" href="./paper.pdf" role="button">
+        <i class="fa fa-file-pdf-o"></i> PDF
+    </a>
+
+    <!-- ArXiv abstract Link -->
+    <a type="button" class="btn btn-warning" href="https://arxiv.org/abs/2404.05130" role="button">
+      <i class="ai ai-arxiv"></i> arXiv
+    </a>
+
+    <!-- Github link -->
+    <a type="button" class="btn btn-warning" href="https://github.com/ChaseSecurity/Fostering_Cyber_Threat_Detection_Through_FL" role="button">
+      <i class="fa fa-github"></i> Code
+    </a>
+
+    <!-- Introduction -->
+    <div class="mt-5">
+      <div class="white-box">
+        <img src="./assets/img/banner.png" width="100%" height="100%">
+        <p class="caption">This study systematically profiles the (in)feasibility of federated learning for privacy-preserving cyber threat detection, namely SMS spam detection and Android malware detection, in terms of effectiveness, byzantine resilience, and efficiency.</p>
+      </div>
+
+    </div>
+
+    <!-- Abstract -->
+    <div class="mt-5 yellow-box">
+      <h2>Abstract</h2>
+      <p>
+      Despite achieving good performance and wide adoption, machine learning based security detection models (e.g., malware classifiers) are subject to concept drift and evasive evolution of attackers, which renders up-to-date threat data as a necessity.  However, due to enforcement of various privacy protection regulations (e.g., GDPR),   it is becoming increasingly challenging or even prohibitive for security vendors to collect individual-relevant and privacy-sensitive threat datasets, e.g., SMS spam/non-spam messages from mobile devices. To address such obstacles, this study systematically profiles the (in)feasibility of federated learning for privacy-preserving cyber threat detection in terms of effectiveness, byzantine resilience, and efficiency. This is made possible by the build-up of multiple threat datasets and threat detection models, and more importantly, the design of realistic and security-specific experiments. 
+      </p>
+      <p>
+      We evaluate FL on two representative threat detection tasks, namely SMS spam detection and Android malware detection. It shows that FL-trained detection models can achieve a performance that is comparable to centrally trained counterparts. Also, most non-IID data distributions  have either minor or negligible impact on the model performance, while a label-based non-IID distribution of a high extent can incur non-negligible fluctuation and delay in FL training. Then, under a realistic threat model, FL turns out to be adversary-resistant to attacks of both data poisoning and model poisoning. Particularly, the attacking impact of a practical data poisoning attack is no more than 0.14% loss in model accuracy. Regarding FL efficiency,  a bootstrapping strategy turns out to be  effective to mitigate the training delay as observed in label-based non-IID scenarios.
+      </p>
+    </div>
+  </div>
+
+
+  
+
+  <div class="container flex-shrink-0">
+    <!-- Section -->
+    <h2 class="title">The Effectiveness of FL</h2>
+    <div id="carouselFirst" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000" data-pause="true">
+          <div class="white-box row align-items-center h-100"  align="center">
+            <div class="mx-auto">
+              <h5>Quantity-based non-IID distribution.</h5>
+              <img src="./assets/img/quantity.png" width="100%">
+              <p class="caption">A high degree of quantity-based non-IID distribution can yield better model performance and faster training convergence, especially for cross-device FL. </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Label-based non-IID distribution.</h5>
+              <img src="./assets/img/label.png" width="85%">
+              <p class="caption">A high degree of label-based non-IID distribution has no obvious impact on model performance, but can incur notable fluctuations (i.e., unstable convergence) in FL training, especially for the cross-device FL. </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Consistent label imbalance (CLI).</h5>
+              <!-- <img src="./assets/img/CLI.png" width="90%"> -->
+              <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+                <caption style="text-align: center;">The accuracy of security models under CLI scenarios.</caption>
+                <thead class="align-middle">
+                    <tr>
+                        <th rowspan="2">Task</th>
+                        <th rowspan="2">Model</th>
+                        <th colspan="3">PNR</th>
+                    </tr>
+                    <tr>
+                        <th>0.25</th>
+                        <th>1</th>
+                        <th>4</th>
+                    </tr>
+                </thead>
+                <tbody style="border-top: 2px solid currentcolor;">
+                    <tr>
+                        <td rowspan="3">Spam</td>
+                        <td>Central</td>
+                        <td>0.9865</td>
+                        <td>0.9898</td>
+                        <td>0.9873</td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Device FL</td>
+                        <td>0.9703</td>
+                        <td>0.9857</td>
+                        <td>0.9641</td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Silo FL</td>
+                        <td>0.9857</td>
+                        <td>0.9905</td>
+                        <td>0.9821</td>
+                    </tr>
+                    <tr style="border-top: 1px solid currentcolor;">
+                        <td rowspan="3">Malware</td>
+                        <td>Central</td>
+                        <td>0.9854</td>
+                        <td>0.9963</td>
+                        <td><b>0.7866</b></td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Device FL</td>
+                        <td>0.9805</td>
+                        <td>0.9901</td>
+                        <td><b>0.5000</b></td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Silo FL</td>
+                        <td>0.9755</td>
+                        <td>0.9894</td>
+                        <td><b>0.5026</b></td>
+                    </tr>
+                </tbody>
+              </table>
+
+              <p class="caption">The consistent label imbalance (CLI) towards positive (malicious) samples can incur a non-negligible degradation in performance, while the performance impact of CLI towards negative samples (more practical in cross-device FL) is minor.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Language-based non-IID distribution for SMS spam detection.</h5>
+              <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+                <!-- <caption style="text-align: center;">The performance stats of FL-trained spam detection models under language-based non-IID distribution.</caption> -->
+                <caption style="text-align: center;"></caption>
+                <thead class="align-middle">
+                  <tr>
+                      <th>FL</th>
+                      <th>k</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                  </tr>
+                </thead>
+                <tbody style="border-top: 2px solid currentcolor;">
+                    <tr>
+                        <td rowspan="4">Cross-Device</td>
+                        <td>k = 1</td>
+                        <td>0.9609 &plusmn; 0.0087</td>
+                        <td>0.9889 &plusmn; 0.0025</td>
+                    </tr>
+                    <tr>
+                        <td>k = 2</td>
+                        <td>0.9726 &plusmn; 0.0059</td>
+                        <td>0.9896 &plusmn; 0.0022</td>
+                    </tr>
+                    <tr>
+                        <td>k = 3</td>
+                        <td>0.9771 &plusmn; 0.0101</td>
+                        <td>0.9861 &plusmn; 0.0042</td>
+                    </tr>
+                    <tr>
+                        <td>k = 4</td>
+                        <td>0.9796 &plusmn; 0.0063</td>
+                        <td>0.9891 &plusmn; 0.0024</td>
+                    </tr>
+                    <tr style="border-top: 1px solid currentcolor;">
+                        <td rowspan="4">Cross-Silo</td>
+                        <td>k = 1</td>
+                        <td>0.9760 &plusmn; 0.0037</td>
+                        <td>0.9162 &plusmn; 0.0071</td>
+                    </tr>
+                    <tr>
+                        <td>k = 2</td>
+                        <td>0.9850 &plusmn; 0.0044</td>
+                        <td>0.9920 &plusmn; 0.0019</td>
+                    </tr>
+                    <tr>
+                        <td>k = 3</td>
+                        <td>0.9840 &plusmn; 0.0042</td>
+                        <td>0.9901 &plusmn; 0.0017</td>
+                    </tr>
+                    <tr>
+                        <td>k = 4</td>
+                        <td>0.9866 &plusmn; 0.0044</td>
+                        <td>0.9895 &plusmn; 0.0025</td>
+                    </tr>
+                </tbody>
+              </table>
+
+              <p class="caption">The more languages each FL client is assigned with, the better precision the respective FL-trained model can achieve, while the effect of language-based non-IID on the recall is minor.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Family-based non-IID distribution for Android malware detection.</h5>
+              <img src="./assets/img/family.png" width="90%">
+              <p class="caption">We can see that, as k gets smaller, the training processing becomes more unstable and converges more slowly. </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselFirst" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselFirst" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Section -->
+    <h2 class="title">The Byzantine Resilience of FL</h2>
+    <div id="carouselSecond" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselSecond" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselSecond" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselSecond" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselSecond" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000" data-pause="true">
+          <div class="white-box row align-items-center h-100"  align="center">
+            <div class="mx-auto">
+              <h5>Data Poisoning Attacks (I).</h5>
+              <p style="color: gray;">The attack impact in terms of accuracy decrease for data poisoning attacks of different fractions of manipulated clients M, when poisoning rate p=100%.</p>
+              <img src="./assets/img/data-poison.png" width="80%">
+              <p class="caption">Data poisoning with a practical fraction of poisoned clients (M &#8804; 5%) has a <strong>negligible</strong> attack impact in terms of accuracy decrease.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Data Poisoning Attacks (II).</h5>
+              <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+                <caption>The attack impact in terms of accuracy decrease for <strong>data poisoning attacks</strong> with M = 40% and different poisoning rates p.</caption>
+                <thead class="align-middle">
+                  <tr>
+                    <th>Task</th>
+                    <th>p</th>
+                    <th>Cross-device</th>
+                  </tr>
+                </thead>
+                <tbody style="border-top: 2px solid currentcolor;">
+                  <tr>
+                    <td rowspan="4">Spam</td>
+                    <td>25%</td>
+                    <td>0.0081 &plusmn; 0.0038</td>
+                  </tr>
+                  <tr>
+                    <td>50%</td>
+                    <td>0.0402 &plusmn; 0.0325</td>
+                  </tr>
+                  <tr>
+                    <td>75%</td>
+                    <td>0.4579 &plusmn; 0.0505</td>
+                  </tr>
+                  <tr>
+                    <td>100%</td>
+                    <td>0.9858 &plusmn; 0.0007</td>
+                  </tr>
+                </tbody>
+                <tbody style="border-top: 1px solid currentcolor;">
+                  <tr>
+                    <td rowspan="4">Malware</td>
+                    <td>25%</td>
+                    <td>0.0121 &plusmn; 0.0032</td>
+                  </tr>
+                  <tr>
+                    <td>50%</td>
+                    <td>0.0126 &plusmn; 0.0107</td>
+                  </tr>
+                  <tr>
+                    <td>75%</td>
+                    <td>0.0154 &plusmn; 0.0039</td>
+                  </tr>
+                  <tr>
+                    <td>100%</td>
+                    <td>0.0927 &plusmn; 0.0293</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+              <p class="caption">Even data poisoning with an impractically high M = 40% still results in minor attack impact as long as the per-client sample poisoning rate is realistic (e.g., 25%). </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Data poisoning under robust AGRs.</h5>
+              <img src="./assets/img/data-poison-robust.png" width="80%">
+
+
+              <p class="caption">Given impractically powerful data poisoning attackers (equipped with impractically high M and p), robust AGRs can not only significantly lower the attack impact but also make the training process more smooth. </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Model poisoning attacks under the default FL setting.</h5>
+              <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+                <caption>The attack impact in terms of accuracy decrease for <strong>model poisoning attacks</strong> in the default FL settings.</caption>
+                <thead class="align-middle">
+                  <tr>
+                    <th>Task</th>
+                    <th>M</th>
+                    <th>LIE</th>
+                    <th>MIN-MAX</th>
+                    <th>MIN-SUM</th>
+                  </tr>
+                </thead>
+                <tbody style="border-top: 2px solid currentcolor;">
+                  <tr>
+                    <td rowspan="6">Spam</td>
+                    <td>1%</td>
+                    <td>0.0003</td>
+                    <td>0.0152</td>
+                    <td>0.0130</td>
+                  </tr>
+                  <tr>
+                    <td>5%</td>
+                    <td>0.0016</td>
+                    <td>0.0177</td>
+                    <td>0.0166</td>
+                  </tr>
+                  <tr>
+                    <td>10%</td>
+                    <td>0.0014</td>
+                    <td>0.0175</td>
+                    <td>0.0164</td>
+                  </tr>
+                  <tr>
+                    <td>20%</td>
+                    <td>0.0019</td>
+                    <td>0.0180</td>
+                    <td>0.0168</td>
+                  </tr>
+                  <tr>
+                    <td>30%</td>
+                    <td>0.0014</td>
+                    <td>0.0197</td>
+                    <td>0.0241</td>
+                  </tr>
+                  <tr>
+                    <td>40%</td>
+                    <td>0.0026</td>
+                    <td>0.0201</td>
+                    <td>0.0199</td>
+                  </tr>
+                  <tr style="border-top: 1px solid currentcolor;">
+                    <td rowspan="6">Malware</td>
+                    <td>1%</td>
+                    <td>0.0002</td>
+                    <td>0.0014</td>
+                    <td>-0.0022</td>
+                  </tr>
+                  <tr>
+                    <td>5%</td>
+                    <td>0.0054</td>
+                    <td>-0.0007</td>
+                    <td>0.0073</td>
+                  </tr>
+                  <tr>
+                    <td>10%</td>
+                    <td>-0.0038</td>
+                    <td>0.0049</td>
+                    <td>-0.0039</td>
+                  </tr>
+                  <tr>
+                    <td>20%</td>
+                    <td>-0.0007</td>
+                    <td>0.0042</td>
+                    <td>0.0049</td>
+                  </tr>
+                  <tr>
+                    <td>30%</td>
+                    <td>0.0048</td>
+                    <td>0.0039</td>
+                    <td>0.0053</td>
+                  </tr>
+                  <tr>
+                    <td>40%</td>
+                    <td>0.0065</td>
+                    <td>0.0015</td>
+                    <td>0.0176</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="caption">Model poisoning with a practical fraction of poisoned clients (M ≤ 1%) has an either negligible or minor attack impact for cyber threat detection tasks. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSecond" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselSecond" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    <!-- Section -->
+    <h2 class="title">The Efficiency of FL</h2>
+    <div id="carouselThird" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselFirst" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000" data-pause="true">
+          <div class="white-box row align-items-center h-100"  align="center">
+            <div class="mx-auto">
+              <h5>The (in)efficiency of robust AGRs.</h5>
+              <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center; border-bottom: none;">
+                <caption>The convergence of robust AGRs for the default FL settings.</caption>
+                <thead class="align-middle">
+                  <tr>
+                    <th rowspan="2">Task</th>
+                    <th rowspan="2">Scenario</th>
+                    <th colspan="2">Trimmed Mean</th>
+                    <th colspan="2">Multi-Krum</th>
+                  </tr>
+                  <tr>
+                    <th>Rounds<sup>1</sup></th>
+                    <th>Time<sup>2</sup></th>
+                    <th>Rounds</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody style="border-top: 2px solid currentcolor; border-bottom: 3px solid currentcolor;">
+                  <tr>
+                    <td rowspan="1">Spam</td>
+                    <td>Cross-device</td>
+                    <td>218.18%</td>
+                    <td>195.61%</td>
+                    <td>101.52%</td>
+                    <td>121.58%</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="1">Malware</td>
+                    <td>Cross-device</td>
+                    <td>122.58%</td>
+                    <td>118.73%</td>
+                    <td>79.03%</td>
+                    <td>75.75%</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="6">
+                      <sup>1</sup> The ratio of the number of FL rounds over that of FedAVG.<br>
+                      <sup>2</sup> The ratio of time cost for the respective robust AGR over that of FedAVG.
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+
+              <p class="caption">When enabled by default for FL training, Multi-Krum, a robust AGR, has a minor overhead for the model performance and the convergence time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="white-box row align-items-center h-100" align="center">
+            <div class="mx-auto">
+              <h5>Mitigating the convergence delay through bootstrapping.</h5>
+              <img src="./assets/img/bootstrap.png" width="85%">
+              <p class="caption">A label-based non-IID data distribution can incur a significant delay in convergence, which however can be effectively mitigated through the bootstrapping strategy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselThird" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselThird" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+
+
+    <!-- Source Code & Dataset -->
+    <!-- <h2 class="title">Source Code</h2> -->
+    <h2 class="title">Dataset</h2>
+    The datasets in our experiments.
+    <div align="center">
+      <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+        <h5>SMS Spam Dataset</h5>
+        <thead class="align-middle">
+          <tr>
+            <th>Datasets</th>
+            <th>Spam</th>
+            <th>Non-Spam</th>
+            <th>Languages</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody style="border-top: 2px solid currentcolor;">
+          <tr>
+            <td><a href="https://archive.ics.uci.edu/dataset/228/sms+spam+collection">UCI</a></td>
+            <td>747</td>
+            <td>4827</td>
+            <td>English</td>
+            <td>2012</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/AbayomiAlli/SMS-Spam-Dataset">ExAIS</a></td>
+            <td>2,350</td>
+            <td>2,890</td>
+            <td>English</td>
+            <td>2015</td>
+          </tr>
+          <tr> 
+            <td><a href="https://github.com/opmusic/SpamHunter">SpamHunter</a></td>
+            <td>23,249</td>
+            <td>0</td>
+            <td>Multilingual</td>
+            <td>2018-2022</td>
+          </tr>
+          <tr> 
+            <td><a href="https://archive.org/details/twitterarchive">Twitter</a></td>
+            <td>0</td>
+            <td>18,629</td>
+            <td>Multilingual</td>
+            <td>2018-2022</td>
+          </tr>
+          <tr> 
+            <td>Total</td>
+            <td>26,346</td>
+            <td>26,346</td>
+            <td>Multilingual</td>
+            <td>2012-2022</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div align="center">
+      <table class="table table-sm align-middle caption-top group-divider table-borderless table-responsive" style="text-align: center;">
+        <h5>Android Malware Dataset</h5>
+        <thead class="align-middle">
+          <tr>
+            <th>Datasets</th>
+            <th>Malware</th>
+            <th>Benign</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody style="border-top: 2px solid currentcolor;">
+          <tr>
+            <td><a href="https://drebin.mlsec.org/">Drebin</a></td>
+            <td>4,255</td>
+            <td>0</td>
+            <td>2010-2012</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.unb.ca/cic/datasets/andmal2017.html">CIC-AndMal2017</a></td>
+            <td>0</td>
+            <td>1,645</td>
+            <td>2015-2017</td>
+          </tr>
+          <tr> 
+            <td><a href="https://androzoo.uni.lu/">Androzoo</a></td>
+            <td>0</td>
+            <td>2,610</td>
+            <td>2022</td>
+          </tr>
+          <tr> 
+            <td>Total</td>
+            <td>4,255</td>
+            <td>4,255</td>
+            <td>2010-2022</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!--BibTex citation -->
+    <h2 class="title">BibTeX</h2>
+      <pre><code>@article{bi2024enabling,
+    title={Enabling Privacy-Preserving Cyber Threat Detection with Federated Learning}, 
+    author={Yu Bi and Yekai Li and Xuan Feng and Xianghang Mi},
+    year={2024},
+    eprint={2404.05130},
+    archivePrefix={arXiv},
+    primaryClass={cs.CR}
+}
+</code></pre>
+
+  </div>
+
+  
+
+ 
+
+
+
+</main>
+
+<footer class="footer mt-auto py-3">
+  <div class="container" align="center">
+    <span class="text-muted">Copyright © <a class="text-muted" href="https://github.com/ChaseSecurity">ChaseLabs</a>.</span>
+  </div>
+</footer>
+
+<script type="text/javascript" src="./assets/js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.bundle.min.js"></script>
+
+    
+</body>
+</html>
