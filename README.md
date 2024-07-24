@@ -1,8 +1,6 @@
 # Fostering_Cyber_Threat_Detection_Through_FL
 The source code for the paper *Fostering Cyber Threat Detection Through Federated Learning*.
 
-- [Arxiv pdf](https://arxiv.org/pdf/2404.05130)
-- [Project site](https://chasesecurity.github.io/Fostering_Cyber_Threat_Detection_Through_FL/)
 
 ## Overview
 
