@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__
+logs
+venv
+/AndroidMalware/data/*
+!/SMSSpam/data/test_clients/
