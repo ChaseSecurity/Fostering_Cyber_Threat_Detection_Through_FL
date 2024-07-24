@@ -1,0 +1,7 @@
+flwr==1.4.0
+pandas==1.3.5
+ray==2.3.1
+tqdm==4.64.1
+transformers==4.24.0
+torch==1.8.0 #+cu111 # Check your cuda version before installing.
+# cupy-cuda111==12.3.0 # Check your cuda version before installing.
