@@ -12,7 +12,24 @@ We evaluate FL on two representative threat detection tasks, namely SMS spam det
 
 The datasets in our work are all open source as described in our [Project site](https://chasesecurity.github.io/Fostering_Cyber_Threat_Detection_Through_FL/).
 
+### SMS Spam Datasets
 
+| Datasets | Spam | Non-Spam | Languages | Period   |
+|----------|------|----------|-----------|----------|
+| [UCI](https://archive.ics.uci.edu/dataset/228/sms+spam+collection) | 747  | 4827     | English   | 2012     |
+| [ExAIS](https://github.com/AbayomiAlli/SMS-Spam-Dataset)            | 2,350| 2,890    | English   | 2015     |
+| [SpamHunter](https://github.com/opmusic/SpamHunter)                 | 23,249| 0      | Multilingual| 2018-2022|
+| [Twitter](https://archive.org/details/twitterarchive)               | 0    | 18,629   | Multilingual| 2018-2022|
+| Total    | 26,346| 26,346   | Multilingual| 2012-2022|
+
+### Android Malware Datasets
+
+| Datasets | Malware | Benign | Period     |
+|----------|---------|--------|------------|
+| [Drebin](https://drebin.mlsec.org/) | 4,255   | 0      | 2010-2012 |
+| [CIC-AndMal2017](https://www.unb.ca/cic/datasets/andmal2017.html) | 0       | 1,645  | 2015-2017 |
+| [Androzoo](https://androzoo.uni.lu/) | 0       | 2,610  | 2022       |
+| Total | 4,255   | 4,255  | 2010-2022 |
 
 
 ## Code
