@@ -1,5 +1,5 @@
-# Fostering_Cyber_Threat_Detection_Through_FL
-The source code for the paper *Fostering Cyber Threat Detection Through Federated Learning*.
+# Enabling Privacy-Preserving Cyber Threat Detection with Federated Learning
+The source code for the paper *Enabling Privacy-Preserving Cyber Threat Detection with Federated Learning*.
 
 
 ## Overview
